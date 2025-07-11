@@ -5,9 +5,6 @@ folium==0.14.0
 pyngrok==7.0.0
 streamlit-folium==0.15.1
 geopandas==0.14.1
-pandas==2.1.4
-requests==2.31.0
-branca==0.7.1
-numpy==1.26.2
-scipy==1.11.4
-Pillow==10.1.0
+pandas==2.2.1  # Updated to support Python 3.13
+pillow==10.2.0  # Updated version
+numpy==1.26.4  # Explicitly add numpy
