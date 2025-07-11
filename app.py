@@ -10,23 +10,29 @@ import json
 import requests
 import streamlit.components.v1 as components
 
-# Service account setup
-service_account_email = 'ndvi-476@ndvi-441403.iam.gserviceaccount.com'
-credentials = ee.ServiceAccountCredentials(service_account_email, '/content/ndvi-441403-64f3578a04a4.json')
-ee.Initialize(credentials)
+def initialize_earth_engine():
+    try:
+        if 'earth_engine' in st.secrets:
+            service_account_info = json.loads(st.secrets["earth_engine"]["service_account"])
+            credentials = service_account.Credentials.from_service_account_info(
+                service_account_info,
+                scopes=ee.oauth.SCOPES
+            )
+            ee.Initialize(credentials)
+            st.success("Earth Engine initialized successfully!")
+        else:
+            ee.Initialize(project='ndvi-441403')
+    except Exception as e:
+        st.error(f"Earth Engine initialization failed: {str(e)}")
+        st.stop()
+
+# Initialize the app
+initialize_earth_engine()
 st.set_page_config(
     page_title="Vegalytics",
     page_icon="https://cdn-icons-png.flaticon.com/512/2516/2516640.png",
     layout="wide"
 )
-with open('/content/ndvi-441403-64f3578a04a4.json') as f:
-    json_data = f.read()
-json_object = json.loads(json_data, strict=False)
-service_account_email = json_object['client_email']
-credentials = ee.ServiceAccountCredentials(service_account_email, key_data=json_data)
-ee.Initialize(credentials)
-print("Earth Engine initialized successfully with service account.")
-json_key = "/content/ndvi-441403-64f3578a04a4.json"
 
 st.markdown(
 """
