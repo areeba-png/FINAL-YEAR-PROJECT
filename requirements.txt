@@ -2,9 +2,9 @@ streamlit==1.32.2
 google-auth==2.27.0
 earthengine-api==0.1.395
 folium==0.14.0
-pyngrok==7.0.0
 streamlit-folium==0.15.1
 geopandas==0.14.1
-pandas==2.2.1  # Updated to support Python 3.13
-pillow==10.2.0  # Updated version
-numpy==1.26.4  # Explicitly add numpy
+pandas==2.1.4  # Works with Python 3.11
+pillow==10.1.0  # Works with Python 3.11
+numpy==1.26.4  # Explicitly required
+pyngrok==7.0.0  # Remove if unused
